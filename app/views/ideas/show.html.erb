@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @idea.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @idea.description %>
+</p>
+
+<p>
+  
+ <%= image_tag(@idea.picture, :width => 600) if @idea.picture.present? %>
+</p>
+<% if @idea.video.present? %>
+<p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/<%= @idea.video %>" frameborder="0" allowfullscreen></iframe>
+</p>
+<% end %>
+
+<hr>
+
+<h3>Comments</h3>
+<% @idea.comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user_name %></strong>
+    <br />
+    <p><%= comment.body %><p>
+  </div>
+<% end %>
+
+<hr>
+
+<%= render 'comments/form' %>
+
+
+<%= link_to 'Edit', edit_idea_path(@idea) %> |
+<%= link_to 'Back', ideas_path %>
